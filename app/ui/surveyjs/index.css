@@ -1,0 +1,235 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #edf6f8;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+h6 {
+  font-size: 20px !important;
+  font-weight: 900 !important;
+}
+.page-title {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  font-weight: 900 !important;
+  position: relative !important;
+  top: 40px !important;
+}
+.sd-image__image {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 50px !important;
+  position: relative !important;
+  top: -50px !important;
+}
+.sd-title.sd-container-modern__title {
+  position: relative !important;
+  top: 100px !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  margin-top: -50px !important;
+}
+.sd-logo__image {
+  width: 140px !important;
+  margin: 0px 20px 0 0 !important;
+  position: relative !important;
+  top: 20px !important;
+}
+.sd-action-bar {
+  align-self: center !important;
+}
+.sd-navigation__next-btn,
+.sd-navigation__prev-btn,
+.sd-navigation__complete-btn {
+  color: #fff !important;
+  background-color: #ec0000 !important;
+  border-radius: 40px !important;
+  line-height: 8px !important;
+  width: 220px !important;
+}
+
+.sd-progress-buttons__container {
+  display: inline-block !important;
+  font-size: 0 !important;
+  max-width: 1100px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  width: 100% !important;
+}
+.sd-progress-buttons__container-center {
+  text-align: center !important;
+}
+.sd-progress-buttons__image-button-left,
+.sd-progress-buttons__image-button-right {
+  cursor: pointer !important;
+  display: inline-block !important;
+  font-size: 14px !important;
+  height: 16px !important;
+  margin-top: 22px !important;
+  vertical-align: top !important;
+  width: 16px !important;
+}
+.sd-progress-buttons__image-button--hidden {
+  visibility: hidden !important;
+}
+.sd-progress-buttons__list-container {
+  display: inline-block !important;
+  max-width: calc(100% - 36px) !important;
+  overflow: hidden !important;
+}
+.sd-progress-buttons__list {
+  display: inline-block !important;
+  margin-bottom: 0px !important;
+  margin-top: 14px !important;
+  padding-left: 28px !important;
+  padding-right: 28px !important;
+  width: max-content !important;
+}
+.sd-progress-buttons__list li {
+  display: inline-block !important;
+  font-family: Segoe UI, Helvetica Neue, Helvetica, Arial, sans-serif !important;
+  font-size: 14px !important;
+  position: relative !important;
+  text-align: center !important;
+  vertical-align: top !important;
+  width: 110px !important;
+  border-top: 0px !important;
+}
+.sd-progress-buttons__list li:before {
+  border: 3px solid !important;
+  border-radius: 50% !important;
+  box-sizing: initial !important;
+  content: "" !important;
+  cursor: pointer !important;
+  display: block !important;
+  height: 24px !important;
+  line-height: 30px !important;
+  margin: 0 auto 5px !important;
+  width: 24px !important;
+}
+.sd-progress-buttons__list .sd-progress-buttons__page-description,
+.sd-progress-buttons__list .sd-progress-buttons__page-title {
+  width: 100% !important;
+}
+.sd-progress-buttons__list .sd-progress-buttons__page-title {
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  line-height: 15px !important;
+  color: #716d6d !important;
+  white-space: break-spaces !important;
+}
+.sd-progress-buttons__list-element--current .sd-progress-buttons__page-title,
+.sd-progress-buttons__list-element--current
+  .sd-progress-buttons__page-description {
+  color: #000 !important;
+}
+.sd-progress-buttons__list li:before {
+  background-color: #e49c9c !important;
+  border-color: #e49c9c !important;
+}
+.sd-progress-buttons__list li:after {
+  background-color: #d4d4d4 !important;
+}
+
+.sd-progress-buttons__list li:first-child:after {
+  height: 0px !important;
+}
+
+.sd-progress-buttons__list li.sd-progress-buttons__list-element--passed:before {
+  background-color: var(--primary, #ec0000) !important;
+  border-color: var(--primary, #ec0000) !important;
+}
+.sd-progress-buttons__list li.sd-progress-buttons__list-element--current:before,
+.sd-progress-buttons__list
+  li.sd-progress-buttons__list-element--passed.sd-progress-buttons__list-element--current:before {
+  background-color: var(--background, #fff) !important;
+  border-color: var(--primary, #ec0000) !important;
+}
+.sd-progress-buttons__list li:after {
+  content: "" !important;
+  height: 3px !important;
+  left: -36.5% !important;
+  position: absolute !important;
+  top: 30px !important;
+  width: 73% !important;
+}
+.sd-progress-buttons__list
+  li.sd-progress-buttons__list-element--passed
+  + li:after {
+  background-color: #e49c9c !important;
+}
+
+.sd-progress-buttons__container-center {
+  position: relative;
+  top: 120px;
+}
+/* css override for yes/no boolean 
+.question-root-boolean .sd-boolean {
+  box-shadow: none;
+  background-color: transparent;
+}
+.question-root-boolean .sd-boolean__thumb {
+  border-radius: 5px !important;
+  border: 2px solid #4692b2 !important;
+  background-color: #c3dee7 !important;
+  color: #000 !important;
+}
+.question-root-boolean .sd-boolean__thumb-ghost {
+  border-radius: 5px !important;
+  border: 2px solid #4692b2 !important;
+  background-color: #fff !important;
+  color: #000 !important;
+}
+.question-root-boolean .sd-boolean.sd-boolean--allowhover:focus-within {
+  box-shadow: none !important;
+}
+.question-root-boolean .sd-boolean__switch {
+  width: 94% !important;
+}
+.question-root-boolean label .sd-boolean__thumb-ghost {
+  margin-right: 10px !important;
+}
+*/
+@media (min-width: 800px) {
+  #formId_10013 .sd-image {
+    position: relative !important;
+    top: -110px !important;
+  }
+  #formId_10013 .page-title {
+    top: -80px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .sd-progress-buttons__container {
+    display: none !important;
+  }
+  #formId_10013 .sd-image {
+    position: relative !important;
+    top: 10px !important;
+  }
+  .sd-title.sd-container-modern__title {
+    position: relative !important;
+    top: auto !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    margin-top: 0px !important;
+  }
+  .sd-logo__image {
+    margin: 0px !important;
+    top: 0 !important;
+  }
+  .sd-logo {
+    margin: 0 auto !important;
+  }
+}
