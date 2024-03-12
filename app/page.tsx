@@ -9,10 +9,12 @@ export default async function Page() {
   const SURVEY_ID = "10003";
   const UTM = "123123";
   const jsonFormDefinition = await getSurveyJson(SURVEY_ID);
-  const surveyJson = jsonFormDefinition.json;
-  const surveyTheme = jsonFormDefinition.theme;
+  const surveyJson = jsonFormDefinition?.json;
+  const surveyTheme = jsonFormDefinition?.theme;
   const responseJson = await getSurveyData(SURVEY_ID, UTM);
-  const surveyData = JSON.parse(responseJson.formData);
+  const surveyData = responseJson?.formData
+    ? JSON.parse(responseJson.formData)
+    : {};
   const saveSurveyResults = async (data: any) => {
     "use server";
     const dataId = responseJson && responseJson.id ? responseJson.id : null;
