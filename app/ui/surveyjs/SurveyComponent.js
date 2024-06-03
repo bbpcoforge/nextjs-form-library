@@ -6,6 +6,7 @@ import "survey-core/defaultV2.css";
 import "./index.css";
 import Loader from "./Loader";
 import { registerYesNoBoolean } from "./custom/YesNoBoolean";
+import { uploadFiles } from "@/app/lib/actions";
 //import { registerAddressAutoComplete } from "./custom/AddressAutoComplete";
 
 //Register new "YesNoBoolean" component
@@ -136,25 +137,71 @@ const SurveyComponent = ({
   utm,
   saveSurveyResults,
 }) => {
-  //Populate UTM on form
+  //Set UTM in cookies
+  const setCookie = (cname, cvalue, exdays) => {
+    const d = new Date();
+    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  };
+  //Populate UTM on the form
   const updateUTM = () => {
     let el = document.getElementById("urn");
     if (el) el.textContent = utm;
   };
+  const storageItemKey = `STD_${surveyID}_${utm}`;
 
   useEffect(() => {
+    utm && setCookie("utm", utm);
     setTimeout(updateUTM, 500);
   }, []);
-
+  //Save Survey Results
   const saveResults = useCallback((sender) => {
     saveSurveyResults(sender.data);
   }, []);
-
+  //Upload files
+  const uploadFile = useCallback(async (_, options) => {
+    const formData = new FormData();
+    options.files.forEach((file) => {
+      formData.append("name", file.name);
+      formData.append("file", file);
+    });
+    const data = await uploadFiles(formData);
+    options.callback(
+      options.files.map((file) => {
+        return {
+          file: file,
+          content: data.fileName,
+        };
+      })
+    );
+  }, []);
+  // Save survey results to the session storage
+  function saveSurveyDataInSessionStorage(survey) {
+    const data = survey.data;
+    data.pageNo = survey.currentPageNo;
+    window.sessionStorage.setItem(storageItemKey, JSON.stringify(data));
+  }
   if (!surveyJson) return <Loader />;
   const survey = new Model(surveyJson);
   survey.applyTheme(surveyTheme);
-  if (surveyData) survey.data = surveyData;
+  // Restore survey results from backend API
+  // if (surveyData) survey.data = surveyData;
+  // Restore survey results from session storage
+  const prevData = window.sessionStorage.getItem(storageItemKey) || null;
+  if (prevData) {
+    const data = JSON.parse(prevData);
+    survey.data = data;
+    if (data.pageNo) {
+      survey.currentPageNo = data.pageNo;
+    }
+  }
   survey.onComplete.add(saveResults);
+  survey.onUploadFiles.add(uploadFile);
+  // Save survey results to the session storage
+  survey.onValueChanged.add(saveSurveyDataInSessionStorage);
+  survey.onCurrentPageChanged.add(saveSurveyDataInSessionStorage);
+
   const customCss = {
     page: {
       title: "page-title",

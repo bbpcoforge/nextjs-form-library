@@ -13,24 +13,28 @@ export default async function Page({
   params: { slug: string };
   searchParams: any;
 }) {
+  //Retrive Survey ID and Utm from URL
   const SURVEY_ID = params.slug;
   const UTM = searchParams.utm || cookies().get("utm")?.value;
-
   console.log("SURVEY_ID & UTM:", SURVEY_ID, UTM);
+  //TODO: Set UTM in cookies or session storage
 
+  //Get Form Definition
   const jsonFormDefinition = await getSurveyJson(SURVEY_ID);
   const surveyJson = jsonFormDefinition?.json;
   const surveyTheme = jsonFormDefinition?.theme;
-
+  //Get Survey Data
   const responseJson = await getSurveyData(SURVEY_ID, UTM);
   const surveyData = responseJson?.formData
     ? JSON.parse(responseJson.formData)
     : {};
+  //Save Survey Results
   const saveSurveyResults = async (data: any) => {
     "use server";
     const dataId = responseJson && responseJson.id ? responseJson.id : null;
     saveSurveyData(data, SURVEY_ID, UTM, dataId);
   };
+
   return (
     <main>
       <div className="bg-[#edf6f8] lg:flex m-auto justify-center">
